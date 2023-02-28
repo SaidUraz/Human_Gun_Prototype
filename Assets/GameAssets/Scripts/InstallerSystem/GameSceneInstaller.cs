@@ -1,8 +1,4 @@
 using Zenject;
-using UnityEngine;
-using Sirenix.OdinInspector;
-using GameAssets.Scripts.PlayerSystem;
-using GameAssets.Scripts.PlayerSystem.Data;
 
 namespace GameAssets.Scripts.Installers
 {
@@ -10,8 +6,7 @@ namespace GameAssets.Scripts.Installers
     {
         #region Variables
 
-        [BoxGroup("Player Data")][SerializeField] private PlayerData _playerData;
-        [BoxGroup("Player Data")][SerializeField] private PlayerMovementData _playerMovementData;
+        
 
         #endregion Variables
 
@@ -19,8 +14,7 @@ namespace GameAssets.Scripts.Installers
 
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<PlayerHandler>().WithArguments(_playerData);
-            Container.BindInterfacesAndSelfTo<PlayerMovementHandler>().WithArguments(_playerMovementData);
+            
         }
 
         #endregion Functions

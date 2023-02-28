@@ -2,7 +2,7 @@ using Zenject;
 
 namespace GameAssets.Scripts
 {
-    public class ProjectInstaller : MonoInstaller<ProjectInstaller>
+    public class #SCRIPTNAME# : Installer<#SCRIPTNAME#>
     {
         #region Functions
 
