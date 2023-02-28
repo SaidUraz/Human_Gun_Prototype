@@ -19,8 +19,8 @@ namespace GameAssets.Scripts.Installers
 
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<PlayerHandler>();
-            Container.BindInterfacesAndSelfTo<PlayerMovementHandler>();
+            Container.BindInterfacesAndSelfTo<PlayerHandler>().WithArguments(_playerData);
+            Container.BindInterfacesAndSelfTo<PlayerMovementHandler>().WithArguments(_playerMovementData);
         }
 
         #endregion Functions
