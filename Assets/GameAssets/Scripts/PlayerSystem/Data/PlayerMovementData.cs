@@ -17,7 +17,7 @@ namespace GameAssets.Scripts.PlayerSystem.Data
 
         #region Properties
 
-        public float Speed { get => _verticalSpeed; set => _verticalSpeed = value; }
+        public float VerticalSpeed { get => _verticalSpeed; set => _verticalSpeed = value; }
         public float HorizontalSpeed { get => _horizontalSpeed; set => _horizontalSpeed = value; }
 
         public float HorizontalLerpSpeed { get => _horizontalLerpSpeed; set => _horizontalLerpSpeed = value; }
