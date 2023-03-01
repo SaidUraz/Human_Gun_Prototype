@@ -34,6 +34,16 @@ namespace GameAssets.Scripts.PlayerSystem
             _animator = null;
         }
 
+        public void StartIdleAnimation()
+        {
+            
+        }
+
+        public void StartRunAnimation()
+        {
+
+        }
+
         #endregion Functions
     }
 }

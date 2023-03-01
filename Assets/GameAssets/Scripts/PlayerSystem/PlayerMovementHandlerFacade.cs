@@ -1,5 +1,4 @@
 using UnityEngine;
-using Zenject;
 
 namespace GameAssets.Scripts.PlayerSystem
 {
@@ -7,7 +6,7 @@ namespace GameAssets.Scripts.PlayerSystem
     {
         #region Variables
 
-        [Inject] private Animator animator;
+
 
         #endregion Variables
 
@@ -26,10 +25,7 @@ namespace GameAssets.Scripts.PlayerSystem
 
         private void Update()
         {
-            if (animator)
-            {
-                Debug.LogError("notnnull");
-            }
+            
         }
 
         private void OnDisable()
