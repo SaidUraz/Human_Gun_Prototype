@@ -1,11 +1,8 @@
-using System;
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+using Zenject;
 
-namespace GameAssets.Scripts
+namespace GameAssets.Scripts.LevelSystem
 {
-    public class LevelService : MonoBehaviour
+    public class LevelService : IInitializable, ILateDisposable
     {
         #region Variables
 
@@ -19,33 +16,14 @@ namespace GameAssets.Scripts
 
         #endregion Properties
 
-        #region Awake - Update - OnDisable
-
-        private void Awake()
-        {
-            Initialize();
-        }
-
-        private void Update()
-        {
-
-        }
-
-        private void OnDisable()
-        {
-            Terminate();
-        }
-
-        #endregion Awake - Update - OnDisable
-
         #region Functions
 
-        private void Initialize()
+        public void Initialize()
         {
 
         }
 
-        private void Terminate()
+        public void LateDispose()
         {
 
         }
