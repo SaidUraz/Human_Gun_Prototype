@@ -1,6 +1,6 @@
 using Zenject;
 
-namespace GameAssets.Scripts.Installers
+namespace GameAssets.Scripts.InstallerSystem
 {
     public class MainSceneInstaller : MonoInstaller<MainSceneInstaller>
     {
@@ -14,8 +14,12 @@ namespace GameAssets.Scripts.Installers
 
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<SceneService>();
-            Container.BindInterfacesAndSelfTo<LevelService>();
+            if(!Container.HasBinding<SignalBus>()) SignalBusInstaller.Install(Container);
+
+            Container.BindInterfacesAndSelfTo<SceneService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LevelService>().AsSingle();
+
+            MainSceneSignalInstaller.Install(Container);
         }
 
         #endregion Functions
