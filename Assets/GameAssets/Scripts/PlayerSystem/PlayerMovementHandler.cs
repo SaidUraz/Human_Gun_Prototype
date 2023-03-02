@@ -1,4 +1,5 @@
 using Zenject;
+using Lean.Touch;
 using UnityEngine;
 using GameAssets.Scripts.CanvasSystem;
 using GameAssets.Scripts.PlayerSystem.Data;
@@ -8,6 +9,8 @@ namespace GameAssets.Scripts.PlayerSystem
     public class PlayerMovementHandler : IInitializable, ILateDisposable
     {
         #region Variables
+
+        private Vector3 _targetPosition;
 
         private SignalBus _signalBus;
         private Rigidbody _rigidbody;
@@ -66,9 +69,14 @@ namespace GameAssets.Scripts.PlayerSystem
             _rigidbody.velocity = _playerMovementData.VerticalSpeed * Vector3.forward;
         }
 
-        public void MovePlayerHorizontally()
+        public void MovePlayerHorizontally(LeanFinger leanFinger)
         {
-            
+            _targetPosition = _rigidbody.transform.position;
+            _targetPosition.x += leanFinger.ScreenDelta.x * _playerMovementData.HorizontalSpeed;
+            _targetPosition.x = Mathf.Clamp(_targetPosition.x, _playerMovementData.HorizontalClamp.x, _playerMovementData.HorizontalClamp.y);
+            _targetPosition = new Vector3(_targetPosition.x, _rigidbody.transform.position.y, _rigidbody.transform.position.z);
+
+            _rigidbody.transform.position = Vector3.Lerp(_rigidbody.transform.position, _targetPosition, _playerMovementData.HorizontalLerpSpeed);
         }
 
         #endregion Functions

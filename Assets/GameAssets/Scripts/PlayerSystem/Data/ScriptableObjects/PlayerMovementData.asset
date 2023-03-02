@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f0a0830d746a466a817ab44760cc476, type: 3}
   m_Name: PlayerMovementData
   m_EditorClassIdentifier: 
-  _verticalSpeed: 10
-  _horizontalSpeed: 10
-  _horizontalLerpSpeed: 5
+  _verticalSpeed: 5
+  _horizontalSpeed: 0.01
+  _horizontalLerpSpeed: 0.2
+  _horizontalClamp: {x: -1.7, y: 1.7}

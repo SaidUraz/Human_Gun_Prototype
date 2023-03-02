@@ -1,5 +1,6 @@
 using System;
 using Zenject;
+using Lean.Touch;
 using UnityEngine;
 using GameAssets.Scripts.CanvasSystem;
 
@@ -70,10 +71,14 @@ namespace GameAssets.Scripts.PlayerSystem
         {
             if (subscribe)
             {
+                LeanTouch.OnFingerUpdate += _playerMovementHandler.MovePlayerHorizontally;
+
                 _signalBus.Subscribe<PlayButtonClickedSignal>(OnPlayButtonClickedSignal);
             }
             else if (!subscribe)
             {
+                LeanTouch.OnFingerUpdate -= _playerMovementHandler.MovePlayerHorizontally;
+
                 _signalBus.TryUnsubscribe<PlayButtonClickedSignal>(OnPlayButtonClickedSignal);
             }
         }
@@ -88,7 +93,6 @@ namespace GameAssets.Scripts.PlayerSystem
             if (!_isPlayerMovable) return;
 
             _playerMovementHandler.MovePlayerVertically();
-            _playerMovementHandler.MovePlayerHorizontally();
         }
 
         #endregion Functions
