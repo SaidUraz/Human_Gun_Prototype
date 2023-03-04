@@ -52,6 +52,11 @@ namespace GameAssets.Scripts.ObstacleSystem
 
         public abstract void OnTriggerEntered(Collider collider);
 
+        private void OnTriggerEnter(Collider collider)
+        {
+            OnTriggerEntered(collider);
+        }
+
         #endregion Functions
     }
 }

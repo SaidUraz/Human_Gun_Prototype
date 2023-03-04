@@ -1,6 +1,9 @@
+using System;
+using UnityEngine;
+
 namespace GameAssets.Scripts.BulletSystem
 {
-    public interface IBullet
+    public interface IBullet : IDisposable
     {
         #region Properties
 
@@ -10,7 +13,14 @@ namespace GameAssets.Scripts.BulletSystem
 
         #region Functions
 
+        public Action<IBullet> OnBulletSendToPool { get; set; }
 
+        public void Activate();
+        public void Deactivate();
+
+        public void SetPosition(Vector3 position);
+        public abstract void FireBullet();
+        public void SendToPool();
 
         #endregion Functions
     }

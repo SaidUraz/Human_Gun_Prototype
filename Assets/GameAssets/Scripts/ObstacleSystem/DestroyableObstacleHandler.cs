@@ -26,6 +26,8 @@ namespace GameAssets.Scripts.ObstacleSystem
         protected override void Initialize()
         {
             base.Initialize();
+
+            UpdatePowerText();
         }
 
         protected override void Terminate()
@@ -77,6 +79,9 @@ namespace GameAssets.Scripts.ObstacleSystem
                 UpdatePowerText();
 
                 DestroyObjectIfDestroyable();
+
+                bullet.SendToPool();
+                bullet = null;
             }
         }
 

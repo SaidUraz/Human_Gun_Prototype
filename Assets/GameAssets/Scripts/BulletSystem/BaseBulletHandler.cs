@@ -4,14 +4,20 @@ using Sirenix.OdinInspector;
 
 namespace GameAssets.Scripts.BulletSystem
 {
-    public class BaseBulletHandler : MonoBehaviour, IBullet, IDisposable
+    public abstract class BaseBulletHandler : MonoBehaviour, IBullet, IDisposable
     {
+        #region Events
+
+        private Action<IBullet> onBulletSendToPool;
+
+        #endregion Events
+
         #region Variables
 
-        protected int power;
+        [BoxGroup("Data")][SerializeField] protected int power;
 
         [BoxGroup("Components")][SerializeField] protected Rigidbody rigidBody;
-        [BoxGroup("Components")][SerializeField] protected BoxCollider boxCollider;
+        [BoxGroup("Components")][SerializeField] protected CapsuleCollider capsuleCollider;
 
         #endregion Variables
 
@@ -19,43 +25,58 @@ namespace GameAssets.Scripts.BulletSystem
 
         public int Power { get => power; set => power = value; }
 
+        public Action<IBullet> OnBulletSendToPool { get => onBulletSendToPool; set => onBulletSendToPool = value; }
+
         #endregion Properties
 
-        #region Update - OnDestroy
+        #region FixedUpdate
 
-        private void Update()
+        private void FixedUpdate()
         {
-            
+            MoveBullet();
         }
 
-        private void OnDestroy()
-        {
-            Dispose();
-        }
-
-        #endregion Update - OnDestroy
+        #endregion FixedUpdate
 
         #region Functions
 
-        protected virtual void Initialize()
+        public virtual void Activate()
         {
-
+            enabled = true;
+            gameObject.SetActive(true);
         }
 
-        protected virtual void Terminate()
+        public virtual void Deactivate()
         {
-
+            enabled = false;
+            gameObject.SetActive(false);
         }
 
         public virtual void Dispose()
         {
             rigidBody = null;
-            boxCollider = null;
+            capsuleCollider = null;
         }
 
         protected virtual void SendBackToPool()
         {
+            enabled = false;
+        }
 
+        protected abstract void MoveBullet();
+
+        public abstract void FireBullet();
+
+        public void SetPosition(Vector3 position)
+        {
+            transform.position = position;
+        }
+
+        public void SendToPool()
+        {
+            OnBulletSendToPool?.Invoke(this);
+
+            Deactivate();
         }
 
         #endregion Functions

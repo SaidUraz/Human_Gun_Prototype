@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace GameAssets.Scripts.BulletSystem
 {
     public class BulletHandler : BaseBulletHandler
@@ -15,14 +17,14 @@ namespace GameAssets.Scripts.BulletSystem
 
         #region Functions
 
-        protected override void Initialize()
+        public override void Activate()
         {
-            base.Initialize();
+            base.Activate();
         }
 
-        protected override void Terminate()
+        public override void Deactivate()
         {
-            base.Terminate();
+            base.Deactivate();
         }
 
         public override void Dispose()
@@ -30,9 +32,14 @@ namespace GameAssets.Scripts.BulletSystem
             base.Dispose();
         }
 
-        protected override void SendBackToPool()
+        protected override void MoveBullet()
         {
-            base.SendBackToPool();
+            rigidBody.velocity = 10f * Vector3.forward;
+        }
+
+        public override void FireBullet()
+        {
+            enabled = true;
         }
 
         #endregion Functions

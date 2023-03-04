@@ -1,6 +1,7 @@
 using Zenject;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using GameAssets.Scripts.PlayerSystem.Fire;
 using GameAssets.Scripts.PlayerSystem.Data;
 
 namespace GameAssets.Scripts.PlayerSystem
@@ -9,8 +10,9 @@ namespace GameAssets.Scripts.PlayerSystem
     {
         #region Variables
 
-        [BoxGroup("Player")][SerializeField] private PlayerData _playerData;
-        [BoxGroup("Player")][SerializeField] private PlayerMovementData _playerMovementData;
+        [BoxGroup("Data")][SerializeField] private PlayerData _playerData;
+        [BoxGroup("Data")][SerializeField] private PlayerFireData _playerFireData;
+        [BoxGroup("Data")][SerializeField] private PlayerMovementData _playerMovementData;
 
         #endregion Variables
 
@@ -21,6 +23,7 @@ namespace GameAssets.Scripts.PlayerSystem
             Container.BindInterfacesAndSelfTo<PlayerHandler>().AsSingle().WithArguments(_playerData);
             Container.BindInterfacesAndSelfTo<PlayerMovementHandler>().AsSingle().WithArguments(_playerMovementData);
             Container.BindInterfacesAndSelfTo<PlayerAnimationHandler>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerFireHandler>().AsSingle().WithArguments(_playerFireData);
         }
 
         #endregion Functions

@@ -1,6 +1,7 @@
 using Zenject;
 using System.Collections.Generic;
 using GameAssets.Scripts.BulletSystem.Factory;
+using UnityEngine;
 
 namespace GameAssets.Scripts.BulletSystem.Pool
 {
@@ -10,7 +11,7 @@ namespace GameAssets.Scripts.BulletSystem.Pool
 
         private BulletFactory _bulletFactory;
 
-        private List<IBullet> _iBulletList;
+        private Stack<IBullet> _iBulletStack;
 
         #endregion Variables
 
@@ -29,34 +30,27 @@ namespace GameAssets.Scripts.BulletSystem.Pool
 
         public void Initialize()
         {
-            _iBulletList = new List<IBullet>();
+            _iBulletStack = new Stack<IBullet>();
         }
 
         public void LateDispose()
         {
-            _iBulletList = null;
+            _iBulletStack = null;
         }
 
-        public void SendItemToPool(IBullet bullet)
+        private void OnItemSendToPool(IBullet bullet)
         {
-            _iBulletList.Add(bullet);
+            bullet.OnBulletSendToPool -= OnItemSendToPool;
+            Debug.LogError(_iBulletStack.Count);
+            _iBulletStack.Push(bullet);
+            Debug.LogError(_iBulletStack.Count);
         }
 
         private IBullet GetBulletFromPool()
         {
-            IBullet bullet = null;
+            _iBulletStack.TryPop(out IBullet bullet);
 
-            for (int i = 0; i < _iBulletList.Count; i++)
-            {
-                bullet = _iBulletList[i];
-
-                if (bullet != null)
-                {
-                    return bullet;
-                }
-            }
-
-            return null;
+            return bullet;
         }
 
         private IBullet GetBulletFromFactory()
@@ -71,13 +65,20 @@ namespace GameAssets.Scripts.BulletSystem.Pool
             bullet = GetBulletFromPool();
             if (bullet != null)
             {
-                _iBulletList.Remove(bullet);
+                Debug.LogError("Pool");
+                bullet.OnBulletSendToPool += OnItemSendToPool;
+                bullet.Activate();
                 return bullet;
             }
 
             bullet = GetBulletFromFactory();
             if (bullet != null)
+            {
+                Debug.LogError("Factory");
+                bullet.OnBulletSendToPool += OnItemSendToPool;
+                bullet.Activate();
                 return bullet;
+            }
 
             return null;
         }

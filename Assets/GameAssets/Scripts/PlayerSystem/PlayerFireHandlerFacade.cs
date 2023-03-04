@@ -9,7 +9,7 @@ namespace GameAssets.Scripts.PlayerSystem.Fire
     {
         #region Variables
 
-        
+        private PlayerFireHandler _playerFireHandler;
 
         #endregion Variables
 
@@ -28,7 +28,7 @@ namespace GameAssets.Scripts.PlayerSystem.Fire
 
         private void Update()
         {
-
+            FireBulletSequence();
         }
 
         private void OnDisable()
@@ -41,9 +41,9 @@ namespace GameAssets.Scripts.PlayerSystem.Fire
         #region Functions
 
         [Inject]
-        private void PlayerFireHandlerFacadeConstructor()
+        private void PlayerFireHandlerFacadeConstructor(PlayerFireHandler playerFireHandler)
         {
-            
+            _playerFireHandler = playerFireHandler;
         }
 
         private void Initialize()
@@ -54,6 +54,20 @@ namespace GameAssets.Scripts.PlayerSystem.Fire
         private void Terminate()
         {
 
+        }
+
+        private void FireBulletSequence()
+        {
+            _playerFireHandler.Timer();
+
+            bool isRaycastable = _playerFireHandler.IsRaycastable();
+            if (!isRaycastable) return;
+
+            bool isHit = _playerFireHandler.IsDestroyableObstacleHit();
+            if (!isHit) return;
+
+            if (!_playerFireHandler.IsReadyToFire) return;
+            _playerFireHandler.FireBullet();
         }
 
         #endregion Functions

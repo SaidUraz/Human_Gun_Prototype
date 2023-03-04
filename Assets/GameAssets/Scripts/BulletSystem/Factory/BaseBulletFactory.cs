@@ -26,9 +26,9 @@ namespace GameAssets.Scripts.BulletSystem.Factory
 
         public abstract IBullet Manufacture();
 
-        public abstract IBullet Manufacture(Transform parent);
-
         public abstract IBullet Manufacture(Transform parent, Vector3 position, Quaternion rotation);
+
+        public abstract IBullet Manufacture(int power, Transform parent, Vector3 position, Quaternion rotation);
 
         #endregion Functions
     }

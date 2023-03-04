@@ -28,14 +28,17 @@ namespace GameAssets.Scripts.BulletSystem.Factory
             return GameObject.Instantiate(_bulletFactoryData._bulletPrefab, null, true);
         }
 
-        public override IBullet Manufacture(Transform parent)
-        {
-            return GameObject.Instantiate(_bulletFactoryData._bulletPrefab, parent, true);
-        }
-
         public override IBullet Manufacture(Transform parent, Vector3 position, Quaternion rotation)
         {
             return GameObject.Instantiate(_bulletFactoryData._bulletPrefab, position, rotation, parent);
+        }
+
+        public override IBullet Manufacture(int power, Transform parent, Vector3 position, Quaternion rotation)
+        {
+            BaseBulletHandler baseBulletHandler = GameObject.Instantiate(_bulletFactoryData._bulletPrefab, position, rotation, parent);
+            baseBulletHandler.Power = power;
+
+            return baseBulletHandler;
         }
 
         #endregion Functions
