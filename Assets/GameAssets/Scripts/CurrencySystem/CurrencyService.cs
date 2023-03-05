@@ -1,5 +1,6 @@
 using Zenject;
 using UnityEngine;
+using DG.Tweening;
 using GameAssets.Scripts.SaveSystem;
 using GameAssets.Scripts.CurrencySystem.Signals;
 
@@ -11,8 +12,10 @@ namespace GameAssets.Scripts.CurrencySystem
 
         private const string CurrencySaveKey = "CurrencySaveKey";
 
+        private double _targetAmount;
         private double _currencyAmount;
 
+        private Tween _amountTween;
         private SignalBus _signalBus;
         private SaveService _saveService;
 

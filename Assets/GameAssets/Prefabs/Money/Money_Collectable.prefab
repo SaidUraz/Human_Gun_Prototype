@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f716a750504a9407c91085e726dd0c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moneyAmount: 10
+  _moneyAmount: 100
   _rotateDuration: 2
   _yMovementOffset: 0.25
   _yMovementDuration: 1

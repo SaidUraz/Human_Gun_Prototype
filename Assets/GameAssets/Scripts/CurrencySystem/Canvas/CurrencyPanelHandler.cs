@@ -1,7 +1,9 @@
 using TMPro;
 using Zenject;
 using UnityEngine;
+using DG.Tweening;
 using Sirenix.OdinInspector;
+using GameAssets.Scripts.ExtensionSystem;
 using GameAssets.Scripts.CurrencySystem.Signals;
 
 namespace GameAssets.Scripts.CurrencySystem.Canvas
@@ -12,15 +14,14 @@ namespace GameAssets.Scripts.CurrencySystem.Canvas
 
         private SignalBus _signalBus;
 
+        private Tween _amountTween;
+
+        private double _targetAmount;
+        private double _currencyAmount;
+
         [BoxGroup("Components")][SerializeField] private TextMeshProUGUI _currentAmountText;
 
         #endregion Variables
-
-        #region Properties
-
-
-
-        #endregion Properties
 
         #region Awake - OnDisable
 
@@ -58,17 +59,33 @@ namespace GameAssets.Scripts.CurrencySystem.Canvas
         {
             if (subscribe)
             {
-                _signalBus.Subscribe<CurrencyAmountChangedSignal>(UpdateCurrencyText);
+                _signalBus.Subscribe<CurrencyAmountChangedSignal>(OnCurrencyAmountChanged);
             }
             else if (!subscribe)
             {
-                _signalBus.TryUnsubscribe<CurrencyAmountChangedSignal>(UpdateCurrencyText);
+                _signalBus.TryUnsubscribe<CurrencyAmountChangedSignal>(OnCurrencyAmountChanged);
             }
         }
 
-        private void UpdateCurrencyText(CurrencyAmountChangedSignal currencyAmountChangedSignal)
+        private void OnCurrencyAmountChanged(CurrencyAmountChangedSignal currencyAmountChangedSignal)
         {
-            _currentAmountText.text = "" + currencyAmountChangedSignal.CurrencyAmount;
+            _currencyAmount = currencyAmountChangedSignal.CurrencyAmount;
+            AddCurrencyWithTween();
+        }
+
+        private void UpdateCurrencyText(double currencyAmount)
+        {
+            _currentAmountText.text = "" + currencyAmount.AbbrivateNum();
+        }
+
+        private void AddCurrencyWithTween(float duration = 1f)
+        {
+            _amountTween?.Kill();
+            _amountTween = DOTween.To(() => _targetAmount, x => _targetAmount = x, _currencyAmount, duration)
+                .OnUpdate(() =>
+                {
+                    UpdateCurrencyText(_targetAmount);
+                });
         }
 
         #endregion Functions
