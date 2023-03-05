@@ -2,7 +2,7 @@ using Zenject;
 using UnityEngine;
 using GameAssets.Scripts.CanvasSystem;
 
-namespace GameAssets.Scripts.PlayerSystem
+namespace GameAssets.Scripts.PlayerSystem.Animation
 {
     public class PlayerAnimationHandler : IInitializable, ILateDisposable
     {

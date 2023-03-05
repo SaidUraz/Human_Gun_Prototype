@@ -3,6 +3,9 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using GameAssets.Scripts.PlayerSystem.Fire;
 using GameAssets.Scripts.PlayerSystem.Data;
+using GameAssets.Scripts.PlayerSystem.Money;
+using GameAssets.Scripts.PlayerSystem.Movement;
+using GameAssets.Scripts.PlayerSystem.Animation;
 
 namespace GameAssets.Scripts.PlayerSystem
 {
@@ -24,9 +27,10 @@ namespace GameAssets.Scripts.PlayerSystem
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<PlayerHandler>().AsSingle().WithArguments(_playerData);
+            Container.BindInterfacesAndSelfTo<PlayerFireHandler>().AsSingle().WithArguments(_playerFireData);
+            Container.BindInterfacesAndSelfTo<PlayerMoneyHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerMovementHandler>().AsSingle().WithArguments(_playerMovementData);
             Container.BindInterfacesAndSelfTo<PlayerAnimationHandler>().AsSingle();
-            Container.BindInterfacesAndSelfTo<PlayerFireHandler>().AsSingle().WithArguments(_playerFireData);
 
             Container.BindInstance(_playerTransform).WithId("PlayerTransform");
             Container.BindInstance(_bulletFireTransform).WithId("BulletFireTransform");

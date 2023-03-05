@@ -4,7 +4,7 @@ using Lean.Touch;
 using UnityEngine;
 using GameAssets.Scripts.CanvasSystem;
 
-namespace GameAssets.Scripts.PlayerSystem
+namespace GameAssets.Scripts.PlayerSystem.Movement
 {
     public class PlayerMovementHandlerFacade : MonoBehaviour, IDisposable
     {

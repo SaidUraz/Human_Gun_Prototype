@@ -4,7 +4,7 @@ using UnityEngine;
 using GameAssets.Scripts.CanvasSystem;
 using GameAssets.Scripts.PlayerSystem.Data;
 
-namespace GameAssets.Scripts.PlayerSystem
+namespace GameAssets.Scripts.PlayerSystem.Movement
 {
     public class PlayerMovementHandler : IInitializable, ILateDisposable
     {
