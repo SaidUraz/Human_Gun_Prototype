@@ -2,6 +2,7 @@ using Zenject;
 using UnityEngine;
 using DG.Tweening;
 using GameAssets.Scripts.SaveSystem;
+using GameAssets.Scripts.RaycastSystem;
 using GameAssets.Scripts.CurrencySystem.Signals;
 
 namespace GameAssets.Scripts.CurrencySystem
@@ -37,7 +38,7 @@ namespace GameAssets.Scripts.CurrencySystem
 
         public void Initialize()
         {
-            _signalBus.Fire(new CurrencyAmountChangedSignal(_currencyAmount));
+            _signalBus.Fire(new CurrencyAmountChangedSignal(_currencyAmount, false));
         }
 
         public void LateDispose()
@@ -45,10 +46,10 @@ namespace GameAssets.Scripts.CurrencySystem
 
         }
 
-        public void AddCurrency(double amount)
+        public void AddCurrency(double amount, bool isFlow)
         {
             _currencyAmount += amount;
-            _signalBus.Fire(new CurrencyAmountChangedSignal(_currencyAmount));
+            _signalBus.Fire(new CurrencyAmountChangedSignal(_currencyAmount, isFlow));
         }
 
         private void SaveCurrencyAmount()

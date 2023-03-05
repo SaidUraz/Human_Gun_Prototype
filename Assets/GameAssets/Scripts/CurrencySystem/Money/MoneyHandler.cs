@@ -24,6 +24,7 @@ namespace GameAssets.Scripts.CurrencySystem
         #region Properties
 
         public double MoneyAmount { get => _moneyAmount; }
+        public Vector3 WorldPosition { get => transform.position; }
 
         #endregion Properties
 

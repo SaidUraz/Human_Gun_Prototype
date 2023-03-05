@@ -263,7 +263,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b7beaee26e64f6497b3a418a45c19f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moneyImage: {fileID: 2660937655132972824}
   _currentAmountText: {fileID: 2660937653374066563}
+  _amountForIcon: 10
+  _moneyIconPrefab: {fileID: 1945106981588814654, guid: 93c6c99e2426a49da8a1d295a4717e09, type: 3}
 --- !u!1 &2660937655132972826
 GameObject:
   m_ObjectHideFlags: 0

@@ -37,7 +37,7 @@ namespace GameAssets.Scripts.PlayerSystem.Money
 
         public void CollectMoney(IMoney money)
         {
-            _currencyService.AddCurrency(money.MoneyAmount);
+            _currencyService.AddCurrency(money.MoneyAmount, true);
         }
 
         #endregion Functions

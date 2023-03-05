@@ -51,6 +51,11 @@ namespace GameAssets.Scripts.RaycastSystem
             return Physics.RaycastNonAlloc(ray, raycastHitArray, maxDistance);
         }
 
+        public Vector2 GetWorldToScreenPoint(Vector3 worldPosition)
+        {
+            return _mainCamera.WorldToScreenPoint(worldPosition);
+        }
+
         #endregion Functions
     }
 }

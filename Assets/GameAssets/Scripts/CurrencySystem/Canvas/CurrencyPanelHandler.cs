@@ -2,7 +2,9 @@ using TMPro;
 using Zenject;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 using Sirenix.OdinInspector;
+using GameAssets.Scripts.RaycastSystem;
 using GameAssets.Scripts.ExtensionSystem;
 using GameAssets.Scripts.CurrencySystem.Signals;
 
@@ -13,13 +15,18 @@ namespace GameAssets.Scripts.CurrencySystem.Canvas
         #region Variables
 
         private SignalBus _signalBus;
+        private RaycastService _raycastService;
 
         private Tween _amountTween;
 
         private double _targetAmount;
         private double _currencyAmount;
 
+        [BoxGroup("Components")][SerializeField] private Image _moneyImage;
         [BoxGroup("Components")][SerializeField] private TextMeshProUGUI _currentAmountText;
+
+        [BoxGroup("Flow Settings")][SerializeField] private double _amountForIcon;
+        [BoxGroup("Flow Settings")][SerializeField] private GameObject _moneyIconPrefab;
 
         #endregion Variables
 
@@ -70,7 +77,15 @@ namespace GameAssets.Scripts.CurrencySystem.Canvas
         private void OnCurrencyAmountChanged(CurrencyAmountChangedSignal currencyAmountChangedSignal)
         {
             _currencyAmount = currencyAmountChangedSignal.CurrencyAmount;
-            AddCurrencyWithTween();
+
+            if (currencyAmountChangedSignal.IsFlow)
+            {
+                MoneyFlow(new Vector2(Screen.width / 2f, Screen.height / 2f));
+            }
+            else if (!currencyAmountChangedSignal.IsFlow)
+            {
+                AddCurrencyWithTween();
+            }
         }
 
         private void UpdateCurrencyText(double currencyAmount)
@@ -85,6 +100,21 @@ namespace GameAssets.Scripts.CurrencySystem.Canvas
                 .OnUpdate(() =>
                 {
                     UpdateCurrencyText(_targetAmount);
+                });
+        }
+
+        private void MoneyFlow(Vector2 screenPoint)
+        {
+            //Vector2 objectPosition = _raycastService.GetWorldToScreenPoint(moneyWorldPosition);
+
+            GameObject go = Instantiate(_moneyIconPrefab, transform);
+            go.transform.position = screenPoint;
+
+            go.transform.DOScale(1f, 0.2f);
+            go.transform.DOMove(_moneyImage.transform.position, 1f)
+                .OnComplete(()=>
+                {
+                    AddCurrencyWithTween();
                 });
         }
 
