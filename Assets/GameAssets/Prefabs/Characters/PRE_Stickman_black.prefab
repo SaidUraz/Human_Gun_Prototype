@@ -169,6 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4522949042615395593}
   - component: {fileID: 4129245937964891784}
+  - component: {fileID: 1557917080}
   m_Layer: 0
   m_Name: PRE_Stickman_black
   m_TagString: Untagged
@@ -213,6 +214,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1557917080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3859425023399362483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf4a53a1858f44098cc88ff0a7d453a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3911211281199077449
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,7 +748,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2400244126517489596}
   - component: {fileID: 7317615412846728787}
-  - component: {fileID: 4129245939204210764}
   m_Layer: 0
   m_Name: Plane.001
   m_TagString: Untagged
@@ -831,23 +843,3 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0038795024, y: 0.005511567, z: 0.005987376}
     m_Extent: {x: 0.1401252, y: 0.27475977, z: 0.13910711}
   m_DirtyAABB: 0
---- !u!95 &4129245939204210764
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9095655731968008693}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: db38f38a14389054e9dfeff52f801315, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
