@@ -32,7 +32,7 @@ namespace GameAssets.Scripts.PlayerSystem
 
         private void Update()
         {
-            MovePlayer();
+            MovePlayerVertically();
         }
 
         private void OnDisable()
@@ -54,12 +54,12 @@ namespace GameAssets.Scripts.PlayerSystem
 
         private void Initialize()
         {
-            SubscribeSignals(true);
+            SubscribeEvents(true);
         }
 
         private void Terminate()
         {
-            SubscribeSignals(false);
+            SubscribeEvents(false);
         }
 
         public void Dispose()
@@ -67,17 +67,17 @@ namespace GameAssets.Scripts.PlayerSystem
             _signalBus = null;
         }
 
-        private void SubscribeSignals(bool subscribe)
+        private void SubscribeEvents(bool subscribe)
         {
             if (subscribe)
             {
-                LeanTouch.OnFingerUpdate += _playerMovementHandler.MovePlayerHorizontally;
+                LeanTouch.OnFingerUpdate += MovePlayerHorizontally;
 
                 _signalBus.Subscribe<PlayButtonClickedSignal>(OnPlayButtonClickedSignal);
             }
             else if (!subscribe)
             {
-                LeanTouch.OnFingerUpdate -= _playerMovementHandler.MovePlayerHorizontally;
+                LeanTouch.OnFingerUpdate -= MovePlayerHorizontally;
 
                 _signalBus.TryUnsubscribe<PlayButtonClickedSignal>(OnPlayButtonClickedSignal);
             }
@@ -85,14 +85,22 @@ namespace GameAssets.Scripts.PlayerSystem
 
         private void OnPlayButtonClickedSignal()
         {
+            enabled = true;
             _isPlayerMovable = true;
         }
 
-        private void MovePlayer()
+        private void MovePlayerVertically()
         {
             if (!_isPlayerMovable) return;
 
             _playerMovementHandler.MovePlayerVertically();
+        }
+
+        private void MovePlayerHorizontally(LeanFinger leanFinger)
+        {
+            if (!_isPlayerMovable) return;
+
+            _playerMovementHandler.MovePlayerHorizontally(leanFinger);
         }
 
         #endregion Functions

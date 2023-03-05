@@ -1,4 +1,5 @@
 using UnityEngine;
+using GameAssets.Scripts.BulletSystem.Data;
 
 namespace GameAssets.Scripts.BulletSystem.Factory
 {

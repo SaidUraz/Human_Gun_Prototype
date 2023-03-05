@@ -3,6 +3,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using GameAssets.Scripts.RaycastSystem;
 using GameAssets.Scripts.BulletSystem.Pool;
+using GameAssets.Scripts.BulletSystem.Data;
 using GameAssets.Scripts.BulletSystem.Factory;
 
 namespace GameAssets.Scripts.Installers

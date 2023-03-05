@@ -7,6 +7,7 @@ using GameAssets.Scripts.BulletSystem;
 using GameAssets.Scripts.RaycastSystem;
 using GameAssets.Scripts.ObstacleSystem;
 using GameAssets.Scripts.BulletSystem.Pool;
+using GameAssets.Scripts.PlayerSystem.Data;
 
 namespace GameAssets.Scripts.PlayerSystem.Fire
 {
@@ -17,14 +18,13 @@ namespace GameAssets.Scripts.PlayerSystem.Fire
         private bool _isReadyToFire;
 
         private float _timer;
-        private float _fireTimeInterval;
 
         private Transform _playerTransform;
         private Transform _bulletFireTransform;
 
+        private BulletPool _bulletPool;
         private RaycastService _raycastService;
         private PlayerFireData _playerFireData;
-        private BulletPool _bulletPool;
 
         #endregion Variables
 
@@ -48,8 +48,9 @@ namespace GameAssets.Scripts.PlayerSystem.Fire
 
         public void Initialize()
         {
+            _isReadyToFire = true;
+
             _timer = 0f;
-            _fireTimeInterval = 1f;
         }
 
         public void LateDispose()
@@ -77,7 +78,7 @@ namespace GameAssets.Scripts.PlayerSystem.Fire
 
             _timer += Time.deltaTime;
 
-            if (_timer > _fireTimeInterval)
+            if (_timer > _playerFireData.FireTimeInterval)
             {
                 ResetTimer();
                 _isReadyToFire = true;
@@ -87,14 +88,14 @@ namespace GameAssets.Scripts.PlayerSystem.Fire
         public bool IsDestroyableObstacleHit()
         {
             DestroyableObstacleHandler obstacle = null;
-            obstacle = _raycastService.GetObjectOfTypeWithDirectionNonAlloc<DestroyableObstacleHandler>(_playerTransform.position + Vector3.up * 0.5f, Vector3.forward);
+            obstacle = _raycastService.GetObjectOfTypeWithDirectionNonAlloc<DestroyableObstacleHandler>(_bulletFireTransform.position, Vector3.forward, _playerFireData.RayMaxDistance);
 
             return obstacle != null;
         }
 
         public bool IsRaycastable()
         {
-            return _raycastService.GetHitCountWithDirectionNonAlloc(_playerTransform.position + Vector3.up * 0.5f, Vector3.forward) > 0;
+            return _raycastService.GetHitCountWithDirectionNonAlloc(_bulletFireTransform.position, Vector3.forward, _playerFireData.RayMaxDistance) > 0;
         }
 
         #endregion Functions

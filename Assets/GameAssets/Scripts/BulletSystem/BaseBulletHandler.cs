@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using GameAssets.Scripts.BulletSystem.Data;
 
 namespace GameAssets.Scripts.BulletSystem
 {
@@ -15,6 +16,7 @@ namespace GameAssets.Scripts.BulletSystem
         #region Variables
 
         [BoxGroup("Data")][SerializeField] protected int power;
+        [BoxGroup("Data")][SerializeField] protected BulletSettings bulletSettings;
 
         [BoxGroup("Components")][SerializeField] protected Rigidbody rigidBody;
         [BoxGroup("Components")][SerializeField] protected CapsuleCollider capsuleCollider;

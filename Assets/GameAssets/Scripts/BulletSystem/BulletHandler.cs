@@ -34,7 +34,7 @@ namespace GameAssets.Scripts.BulletSystem
 
         protected override void MoveBullet()
         {
-            rigidBody.velocity = 10f * Vector3.forward;
+            rigidBody.velocity = bulletSettings.BulletSpeed * Vector3.forward;
         }
 
         public override void FireBullet()

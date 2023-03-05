@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc089681069d949f0932eaf33be7ffc3, type: 3}
   m_Name: PlayerFireData
   m_EditorClassIdentifier: 
-  _rayLength: 20
+  _rayMaxDistance: 10
+  _fireTimeInterval: 1

@@ -1,20 +1,24 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
 
-namespace GameAssets.Scripts
+namespace GameAssets.Scripts.PlayerSystem.Data
 {
     [CreateAssetMenu (fileName = "PlayerFireData", menuName = "Scriptable Objects/Player/Data/PlayerFireData")]
     public class PlayerFireData : ScriptableObject
     {
         #region Variables
 
-        [BoxGroup("Ray")][SerializeField] private float _rayLength;
+        [BoxGroup("Ray")][SerializeField] private float _rayMaxDistance;
+
+        [BoxGroup("Data")][SerializeField] private float _fireTimeInterval;
 
         #endregion Variables
 
         #region Properties
 
-        public float RayLength { get => _rayLength; set => _rayLength = value; }
+        public float RayMaxDistance { get => _rayMaxDistance; set => _rayMaxDistance = value; }
+
+        public float FireTimeInterval { get => _fireTimeInterval; set => _fireTimeInterval = value; }
 
         #endregion Properties
 

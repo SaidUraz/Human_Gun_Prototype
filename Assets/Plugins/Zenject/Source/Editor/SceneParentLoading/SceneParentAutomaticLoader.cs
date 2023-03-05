@@ -13,7 +13,7 @@ namespace Zenject.Internal
     {
         static SceneParentAutomaticLoader()
         {
-            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+            //EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
         }
 
         static void OnPlayModeStateChanged(PlayModeStateChange state)

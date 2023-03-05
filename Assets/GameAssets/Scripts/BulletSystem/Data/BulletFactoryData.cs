@@ -2,9 +2,9 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using GameAssets.Scripts.BulletSystem;
 
-namespace GameAssets.Scripts
+namespace GameAssets.Scripts.BulletSystem.Data
 {
-    [CreateAssetMenu (fileName = "BulletFactoryData", menuName = "Scriptable Objects/Data/Factory/BulletFactoryData")]
+    [CreateAssetMenu (fileName = "BulletFactoryData", menuName = "Scriptable Objects/Factory/Bullet/Data/BulletFactoryData")]
     public class BulletFactoryData : ScriptableObject
     {
         #region Variables

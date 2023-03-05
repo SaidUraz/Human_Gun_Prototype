@@ -2,6 +2,7 @@ using System;
 using Zenject;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using GameAssets.Scripts.CanvasSystem;
 using GameAssets.Scripts.RaycastSystem;
 
 namespace GameAssets.Scripts.PlayerSystem.Fire
@@ -10,6 +11,7 @@ namespace GameAssets.Scripts.PlayerSystem.Fire
     {
         #region Variables
 
+        private SignalBus _signalBus;
         private PlayerFireHandler _playerFireHandler;
 
         #endregion Variables
@@ -42,19 +44,37 @@ namespace GameAssets.Scripts.PlayerSystem.Fire
         #region Functions
 
         [Inject]
-        private void PlayerFireHandlerFacadeConstructor(PlayerFireHandler playerFireHandler)
+        private void PlayerFireHandlerFacadeConstructor(SignalBus signalBus, PlayerFireHandler playerFireHandler)
         {
             _playerFireHandler = playerFireHandler;
+            _signalBus = signalBus;
         }
 
         private void Initialize()
         {
-
+            SubscribeEvents(true);
         }
 
         private void Terminate()
         {
+            SubscribeEvents(false);
+        }
 
+        private void SubscribeEvents(bool subscribe)
+        {
+            if (subscribe)
+            {
+                _signalBus.Subscribe<PlayButtonClickedSignal>(OnPlayButtonClicked);
+            }
+            else if (!subscribe)
+            {
+                _signalBus.TryUnsubscribe<PlayButtonClickedSignal>(OnPlayButtonClicked);
+            }
+        }
+
+        private void OnPlayButtonClicked()
+        {
+            enabled = true;
         }
 
         private void FireBulletSequence()
