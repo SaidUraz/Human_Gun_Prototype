@@ -1,4 +1,5 @@
 using TMPro;
+using DG.Tweening;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using GameAssets.Scripts.BulletSystem;
@@ -8,6 +9,8 @@ namespace GameAssets.Scripts.ObstacleSystem
     public class DestroyableObstacleHandler : BaseObstacleHandler
     {
         #region Variables
+
+        private Tween _hitTween;
 
         [BoxGroup("Data")][SerializeField] private int _power;
 
@@ -55,6 +58,12 @@ namespace GameAssets.Scripts.ObstacleSystem
             return _power <= 0;
         }
 
+        private void PlayHitAnimation()
+        {
+            _hitTween?.Kill();
+            _hitTween = transform.DOShakeScale(0.05f, 0.2f, 1);
+        }
+
         private void DestroyObject()
         {
             gameObject.SetActive(false);
@@ -77,6 +86,7 @@ namespace GameAssets.Scripts.ObstacleSystem
             {
                 UpdatePower(bullet);
                 UpdatePowerText();
+                PlayHitAnimation();
 
                 DestroyObjectIfDestroyable();
 

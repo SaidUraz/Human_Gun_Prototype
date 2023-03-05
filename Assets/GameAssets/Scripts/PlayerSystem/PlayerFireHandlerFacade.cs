@@ -1,6 +1,7 @@
 using System;
 using Zenject;
 using UnityEngine;
+using Sirenix.OdinInspector;
 using GameAssets.Scripts.RaycastSystem;
 
 namespace GameAssets.Scripts.PlayerSystem.Fire

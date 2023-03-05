@@ -20,7 +20,8 @@ namespace GameAssets.Scripts.PlayerSystem.Fire
         private float _fireTimeInterval;
 
         private Transform _playerTransform;
-        
+        private Transform _bulletFireTransform;
+
         private RaycastService _raycastService;
         private PlayerFireData _playerFireData;
         private BulletPool _bulletPool;
@@ -35,12 +36,14 @@ namespace GameAssets.Scripts.PlayerSystem.Fire
 
         #region Functions
 
-        public PlayerFireHandler(BulletPool bulletPool, RaycastService raycastService, PlayerFireData playerFireData, Transform playerTransform)
+        public PlayerFireHandler(BulletPool bulletPool, RaycastService raycastService, PlayerFireData playerFireData, [Inject(Id = "PlayerTransform")] Transform playerTransform, [Inject(Id = "BulletFireTransform")] Transform bulletFireTransform)
         {
             _bulletPool = bulletPool;
             _raycastService = raycastService;
             _playerFireData = playerFireData;
+
             _playerTransform = playerTransform;
+            _bulletFireTransform = bulletFireTransform;
         }
 
         public void Initialize()
@@ -57,7 +60,7 @@ namespace GameAssets.Scripts.PlayerSystem.Fire
         public void FireBullet()
         {
             IBullet bullet = _bulletPool.GetBullet();
-            bullet.SetPosition(Vector3.up * 1.1f);
+            bullet.SetPosition(_bulletFireTransform.position);
             bullet.FireBullet();
 
             _isReadyToFire = false;

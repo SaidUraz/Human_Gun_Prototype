@@ -14,6 +14,9 @@ namespace GameAssets.Scripts.PlayerSystem
         [BoxGroup("Data")][SerializeField] private PlayerFireData _playerFireData;
         [BoxGroup("Data")][SerializeField] private PlayerMovementData _playerMovementData;
 
+        [BoxGroup("Transforms")][SerializeField] private Transform _playerTransform;
+        [BoxGroup("Transforms")][SerializeField] private Transform _bulletFireTransform;
+
         #endregion Variables
 
         #region Functions
@@ -24,6 +27,9 @@ namespace GameAssets.Scripts.PlayerSystem
             Container.BindInterfacesAndSelfTo<PlayerMovementHandler>().AsSingle().WithArguments(_playerMovementData);
             Container.BindInterfacesAndSelfTo<PlayerAnimationHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerFireHandler>().AsSingle().WithArguments(_playerFireData);
+
+            Container.BindInstance(_playerTransform).WithId("PlayerTransform");
+            Container.BindInstance(_bulletFireTransform).WithId("BulletFireTransform");
         }
 
         #endregion Functions

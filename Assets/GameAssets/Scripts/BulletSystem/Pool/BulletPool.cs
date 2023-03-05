@@ -1,7 +1,6 @@
 using Zenject;
 using System.Collections.Generic;
 using GameAssets.Scripts.BulletSystem.Factory;
-using UnityEngine;
 
 namespace GameAssets.Scripts.BulletSystem.Pool
 {
@@ -41,9 +40,7 @@ namespace GameAssets.Scripts.BulletSystem.Pool
         private void OnItemSendToPool(IBullet bullet)
         {
             bullet.OnBulletSendToPool -= OnItemSendToPool;
-            Debug.LogError(_iBulletStack.Count);
             _iBulletStack.Push(bullet);
-            Debug.LogError(_iBulletStack.Count);
         }
 
         private IBullet GetBulletFromPool()
@@ -65,7 +62,6 @@ namespace GameAssets.Scripts.BulletSystem.Pool
             bullet = GetBulletFromPool();
             if (bullet != null)
             {
-                Debug.LogError("Pool");
                 bullet.OnBulletSendToPool += OnItemSendToPool;
                 bullet.Activate();
                 return bullet;
@@ -74,7 +70,6 @@ namespace GameAssets.Scripts.BulletSystem.Pool
             bullet = GetBulletFromFactory();
             if (bullet != null)
             {
-                Debug.LogError("Factory");
                 bullet.OnBulletSendToPool += OnItemSendToPool;
                 bullet.Activate();
                 return bullet;

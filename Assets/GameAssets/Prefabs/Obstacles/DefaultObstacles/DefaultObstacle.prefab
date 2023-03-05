@@ -55,13 +55,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: DefaultObstacle
       objectReference: {fileID: 0}
+    - target: {fileID: 2610581985336333509, guid: ebb7b45e9dcbe48b985c86f738c721d2, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebb7b45e9dcbe48b985c86f738c721d2, type: 3}
---- !u!65 &3252847306344928198 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 5703743598911408063, guid: ebb7b45e9dcbe48b985c86f738c721d2, type: 3}
-  m_PrefabInstance: {fileID: 7062677693636236409}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5060090545389617340 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2610581985336333509, guid: ebb7b45e9dcbe48b985c86f738c721d2, type: 3}
@@ -79,4 +78,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72169e002936c427cb7caf9a36bda568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxCollider: {fileID: 3252847306344928198}
+  boxCollider: {fileID: 0}
