@@ -6,7 +6,7 @@ namespace GameAssets.Scripts.ObstacleSystem
     {
         #region Properties
 
-
+        public int Power { get; }
 
         #endregion Properties
 

@@ -12,8 +12,6 @@ namespace GameAssets.Scripts.ObstacleSystem
 
         private Tween _hitTween;
 
-        [BoxGroup("Data")][SerializeField] private int _power;
-
         [BoxGroup("Components")][SerializeField] private TextMeshPro _powerText;
 
         #endregion Variables
@@ -45,17 +43,17 @@ namespace GameAssets.Scripts.ObstacleSystem
 
         private void UpdatePower(IBullet bullet)
         {
-            _power = Mathf.Clamp(_power - bullet.Power, 0, _power);
+            power = Mathf.Clamp(power - bullet.Power, 0, power);
         }
 
         private void UpdatePowerText()
         {
-            _powerText.text = "" + _power;
+            _powerText.text = "" + power;
         }
 
         private bool IsDestroyable()
         {
-            return _power <= 0;
+            return power <= 0;
         }
 
         private void PlayHitAnimation()

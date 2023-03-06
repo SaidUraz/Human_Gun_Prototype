@@ -1,6 +1,7 @@
 using Zenject;
 using UnityEngine;
 using GameAssets.Scripts.GunSystem;
+using GameAssets.Scripts.ObstacleSystem;
 
 namespace GameAssets.Scripts.PlayerSystem.Gun
 {
@@ -70,6 +71,12 @@ namespace GameAssets.Scripts.PlayerSystem.Gun
                 return;
             }
 
+            IObstacle obstacle = collider.GetComponent<IObstacle>();
+            if (obstacle != null)
+            {
+                _playerGunHandler.HandleGunPart(obstacle);
+                return;
+            }
         }
 
         #endregion Trigger Functions

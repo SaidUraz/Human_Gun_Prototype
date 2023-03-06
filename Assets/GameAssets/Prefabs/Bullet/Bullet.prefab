@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a51465e41b8e440386cd3c3a9d1aae2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 20
+  power: 10
   bulletSettings: {fileID: 11400000, guid: 446385c9dfe1e45c7b902f2029b6533a, type: 2}
   rigidBody: {fileID: 3708279746370749430}
   capsuleCollider: {fileID: 6866637506592094481}

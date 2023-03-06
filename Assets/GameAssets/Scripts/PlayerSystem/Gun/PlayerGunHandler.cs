@@ -2,6 +2,7 @@ using Zenject;
 using UnityEngine;
 using GameAssets.Scripts.GunSystem;
 using GameAssets.Scripts.GunSystem.Data;
+using GameAssets.Scripts.ObstacleSystem;
 
 namespace GameAssets.Scripts.PlayerSystem.Gun
 {
@@ -53,7 +54,26 @@ namespace GameAssets.Scripts.PlayerSystem.Gun
 
         public void HandleGunPart(IGateCollectable gateCollectable)
         {
+            if (gateCollectable.PartCount > 0)
+            {
+                for (int i = 0; i < gateCollectable.PartCount; i++)
+                {
+                    _gunProgressIndex++;
 
+                    // Instantiate human and SetupHuman;
+                }
+            }
+            else if (gateCollectable.PartCount < 0)
+            {
+                // Remove humans according to gunSetupData;
+            }
+        }
+
+        public void HandleGunPart(IObstacle obstacle)
+        {
+            _gunProgressIndex -= obstacle.Power;
+
+            // Remove humans according to gunSetupData;
         }
 
         #endregion Functions

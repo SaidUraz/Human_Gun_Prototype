@@ -8,13 +8,14 @@ namespace GameAssets.Scripts.ObstacleSystem
     {
         #region Variables
 
+        [BoxGroup("Data")][SerializeField] protected int power;
         [BoxGroup("Components")][SerializeField] protected BoxCollider boxCollider;
 
         #endregion Variables
 
         #region Properties
 
-
+        public int Power { get => power; }
 
         #endregion Properties
 

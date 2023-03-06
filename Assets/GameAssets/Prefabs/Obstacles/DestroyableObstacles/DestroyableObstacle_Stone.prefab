@@ -268,8 +268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baec8ef32d76c41d29789b2029ce9c58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  power: 20
   boxCollider: {fileID: 1984908317839978187}
-  _power: 21
   _powerText: {fileID: 7737409646608131994}
 --- !u!1001 &1410591963591139339
 PrefabInstance:
