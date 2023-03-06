@@ -19,6 +19,8 @@ namespace GameAssets.Scripts.GunSystem.Data
 
         #region Properties
 
+        public Vector3 Position { get => _position; }
+        public Quaternion Rotation { get => _rotation; }
         public Material Material { get => _material; }
 
         #endregion Properties

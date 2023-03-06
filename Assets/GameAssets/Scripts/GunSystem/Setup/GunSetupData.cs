@@ -31,6 +31,16 @@ namespace GameAssets.Scripts.GunSystem.Data
 
         }
 
+        public GunPartGroupData GetGunPartGroupDataByIndex(int index)
+        {
+            if (_gunPartGroupDataList.Count >= index + 1)
+            {
+                return _gunPartGroupDataList[index];
+            }
+
+            return null;
+        }
+
         public void ScriptableConstructor(List<GunPartGroupData> gunPartGroupDataList)
         {
             _gunPartGroupDataList = gunPartGroupDataList;

@@ -1,0 +1,61 @@
+using Zenject;
+using UnityEngine;
+using GameAssets.Scripts.GunSystem;
+using GameAssets.Scripts.GunSystem.Data;
+
+namespace GameAssets.Scripts.PlayerSystem.Gun
+{
+    public class PlayerGunHandler : IInitializable, ILateDisposable
+    {
+        #region Variables
+
+        private int _gunProgressIndex;
+
+        private GunSetupData _gunSetupData;
+
+        private Transform _playerTransform;
+        private Transform _gunPartSpawnPivot;
+
+        #endregion Variables
+
+        #region Functions
+
+        public PlayerGunHandler(GunSetupData gunSetupData, [Inject(Id = "GunPartSpawnPivot")] Transform gunPartSpawnPivot, [Inject(Id = "PlayerTransform")] Transform playerTransform)
+        {
+            _gunSetupData = gunSetupData;
+
+            _playerTransform = playerTransform;
+            _gunPartSpawnPivot = gunPartSpawnPivot;
+        }
+
+        public void Initialize()
+        {
+            _gunProgressIndex = -1;
+        }
+
+        public void LateDispose()
+        {
+            _gunSetupData = null;
+        }
+
+        public void HandleGunPart(IHumanCollectable humanCollectable)
+        {
+            _gunProgressIndex += humanCollectable.PartCount;
+
+            GunPartGroupData gunPartGroupData = _gunSetupData.GetGunPartGroupDataByIndex(_gunProgressIndex);
+            if (gunPartGroupData == null) return;
+
+            GunPartData gunPartData = gunPartGroupData.GetGunPartDataByIndex(_gunProgressIndex);
+            if (gunPartData == null) return;
+
+            humanCollectable.HumanHandler.SetupHuman(gunPartData, _playerTransform);
+        }
+
+        public void HandleGunPart(IGateCollectable gateCollectable)
+        {
+
+        }
+
+        #endregion Functions
+    }
+}

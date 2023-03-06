@@ -14,12 +14,6 @@ namespace GameAssets.Scripts.GunSystem.Data
 
         #endregion Variables
 
-        #region Properties
-
-
-
-        #endregion Properties
-
         #region Functions
 
         public GunPartGroupData(List<GunPartData> gunPartDataList)
@@ -27,14 +21,14 @@ namespace GameAssets.Scripts.GunSystem.Data
             _gunPartDataList = gunPartDataList;
         }
 
-        private void Initialize()
+        public GunPartData GetGunPartDataByIndex(int index)
         {
+            if (_gunPartDataList.Count >= index + 1)
+            {
+                return _gunPartDataList[index];
+            }
 
-        }
-
-        private void Terminate()
-        {
-
+            return null;
         }
 
         #endregion Functions
