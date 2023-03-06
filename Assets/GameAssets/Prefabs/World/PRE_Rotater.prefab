@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2045544949956572733}
   m_Layer: 0
-  m_Name: PRE_Obstacle 1
+  m_Name: PRE_Rotater
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

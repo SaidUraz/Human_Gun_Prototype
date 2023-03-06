@@ -24,18 +24,21 @@ namespace GameAssets.Scripts.RaycastSystem
             Ray ray = new Ray(position, direction);
             T requiredObject = default;
 
-            RaycastHit[] raycastHitArray = new RaycastHit[1];
+            RaycastHit[] raycastHitArray = new RaycastHit[5];
             Physics.RaycastNonAlloc(ray, raycastHitArray, maxDistance);
 
             if (raycastHitArray.Length > 0)
             {
                 for (int i = 0; i < raycastHitArray.Length; i++)
                 {
-                    requiredObject = raycastHitArray[i].collider.GetComponent<T>();
-
-                    if (requiredObject != null)
+                    if (raycastHitArray[i].collider != null)
                     {
-                        break;
+                        requiredObject = raycastHitArray[i].collider.GetComponent<T>();
+
+                        if (requiredObject != null)
+                        {
+                            break;
+                        }
                     }
                 }
             }
